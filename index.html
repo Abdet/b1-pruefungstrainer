@@ -1,0 +1,101 @@
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Abdellah | B1 Prüfungstrainer</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#f3f6fb;color:#172033}
+header{background:#173b70;color:white;padding:28px 18px;text-align:center}
+header h1{margin:0 0 8px}
+header p{margin:0;color:#d9e7ff}
+main{max-width:850px;margin:25px auto;padding:0 15px}
+.card{background:white;border-radius:15px;padding:22px;margin-bottom:18px;box-shadow:0 4px 18px #17203312}
+h2{color:#173b70}
+button{border:0;border-radius:9px;padding:12px 18px;background:#1765cc;color:white;font-size:16px;cursor:pointer;margin:5px}
+button:hover{background:#104b99}
+.option{display:block;padding:12px;margin:8px 0;border:1px solid #d6deeb;border-radius:8px;cursor:pointer}
+.option:hover{background:#eef5ff}
+#result{font-weight:bold;font-size:19px;margin-top:15px}
+.small{color:#68758a;font-size:14px}
+footer{text-align:center;padding:25px;color:#68758a}
+</style>
+</head>
+<body>
+<header>
+<h1>🇩🇪 B1 Prüfungstrainer</h1>
+<p>Deutsch lernen mit Abdellah Belafsahi</p>
+</header>
+<main>
+<div class="card">
+<h2>Willkommen!</h2>
+<p>Übe für deine B1-Prüfung mit Lesen-Aufgaben. Beantworte die Fragen und überprüfe dein Ergebnis.</p>
+<p class="small">Übungsmaterial zum Lernen – keine offiziellen Prüfungsaufgaben.</p>
+</div>
+<div class="card">
+<h2>Lesen – Teil 1</h2>
+<p>Lies die Nachricht und wähle die richtige Antwort.</p>
+<blockquote>
+Hallo Sara,<br><br>
+am Samstag möchte ich meinen Geburtstag feiern. Wir treffen uns um 18 Uhr bei mir zu Hause. Bring bitte etwas zu trinken mit. Wenn das Wetter gut ist, können wir auch im Garten sitzen.<br><br>
+Viele Grüße<br>
+Anna
+</blockquote>
+<form id="quiz">
+<p><b>1. Warum schreibt Anna?</b></p>
+<label class="option"><input type="radio" name="q1" value="a"> Sie sucht eine Wohnung.</label>
+<label class="option"><input type="radio" name="q1" value="b"> Sie lädt Sara zum Geburtstag ein.</label>
+<label class="option"><input type="radio" name="q1" value="c"> Sie möchte eine Reise machen.</label>
+
+<p><b>2. Wann treffen sie sich?</b></p>
+<label class="option"><input type="radio" name="q2" value="a"> Am Samstag um 18 Uhr.</label>
+<label class="option"><input type="radio" name="q2" value="b"> Am Sonntag um 18 Uhr.</label>
+<label class="option"><input type="radio" name="q2" value="c"> Am Samstag um 20 Uhr.</label>
+
+<p><b>3. Was soll Sara mitbringen?</b></p>
+<label class="option"><input type="radio" name="q3" value="a"> Einen Kuchen.</label>
+<label class="option"><input type="radio" name="q3" value="b"> Ein Geschenk für Anna.</label>
+<label class="option"><input type="radio" name="q3" value="c"> Etwas zu trinken.</label>
+
+<p><b>4. Wo treffen sie sich?</b></p>
+<label class="option"><input type="radio" name="q4" value="a"> Im Restaurant.</label>
+<label class="option"><input type="radio" name="q4" value="b"> Bei Anna zu Hause.</label>
+<label class="option"><input type="radio" name="q4" value="c"> Im Park.</label>
+
+<p><b>5. Wo können sie sitzen, wenn das Wetter gut ist?</b></p>
+<label class="option"><input type="radio" name="q5" value="a"> Im Garten.</label>
+<label class="option"><input type="radio" name="q5" value="b"> Im Kino.</label>
+<label class="option"><input type="radio" name="q5" value="c"> Im Büro.</label>
+
+<button type="button" onclick="checkAnswers()">Antworten überprüfen</button>
+<button type="reset" onclick="document.getElementById('result').innerHTML=''">Neu starten</button>
+</form>
+<div id="result" aria-live="polite"></div>
+<div id="details"></div>
+</div>
+</main>
+<footer>© 2026 Abdellah Belafsahi · Deutsch B1 lernen</footer>
+<script>
+function checkAnswers(){
+ const answers={q1:"b",q2:"a",q3:"c",q4:"b",q5:"a"};
+ const explanations=[
+ "Anna lädt Sara zu ihrer Geburtstagsfeier ein.",
+ "Sie treffen sich am Samstag um 18 Uhr.",
+ "Sara soll etwas zu trinken mitbringen.",
+ "Sie treffen sich bei Anna zu Hause.",
+ "Bei gutem Wetter können sie im Garten sitzen."
+ ];
+ let score=0,details="";
+ for(let i=1;i<=5;i++){
+  const chosen=document.querySelector('input[name="q'+i+'"]:checked');
+  if(chosen&&chosen.value===answers["q"+i])score++;
+  details+="<p>"+i+". "+explanations[i-1]+"</p>";
+ }
+ document.getElementById("result").textContent="Dein Ergebnis: "+score+" von 5 Punkten ("+(score*20)+" %)";
+ document.getElementById("details").innerHTML="<h3>Lösungen und Erklärungen</h3>"+details;
+}
+</script>
+</body>
+</html>
